@@ -71,7 +71,7 @@ resource "aws_key_pair" "mtc_auth" {
 }
 
 resource "aws_instance" "dev_node" {
-    instance_type = "t2.micro"
+    instance_type = "t2.2xlarge"
     ami = data.aws_ami.server_ami.id
     key_name = aws_key_pair.mtc_auth.id 
     vpc_security_group_ids = [aws_security_group.mtc_sg.id]
@@ -79,7 +79,7 @@ resource "aws_instance" "dev_node" {
     user_data = file("userdata.tpl")
 
     root_block_device {
-        volume_size = 10
+        volume_size = 40
     }
     
     tags = {
@@ -91,6 +91,6 @@ resource "aws_instance" "dev_node" {
       hostname = self.public_ip,
       user     = "ubuntu",
     identityfile = "~/.ssh/mtckey" })
-    interpreter = var.host_os == "windows" ? ["Powershell", "-Command"] : ["bash", "-c"]
+    interpreter = ["bash", "-c"]
   }
 }
