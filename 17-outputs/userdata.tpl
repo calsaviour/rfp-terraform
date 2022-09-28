@@ -12,6 +12,9 @@ sudo apt-get update -y &&
 sudo apt-get upgrade &&
 sudo add-apt-repository ppa:deadsnakes/ppa -y &&
 sudo sudo apt-get install npm python3.10 python3-pip docker-ce docker-ce-cli containerd.io docker-compose-plugin -y  &&
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
 sudo usermod -aG docker ubuntu
 mkdir /home/ubuntu/algorand
 cd /home/ubuntu/algorand
@@ -20,6 +23,7 @@ git clone https://github.com/algorand/reach-auction.git
 git clone https://github.com/algorand/auction-demo.git
 git clone https://github.com/algorand/sandbox.git
 git clone https://github.com/algorand-devrel/beaker-auction.git
+git clone https://github.com/algorand-devrel/beaker-starter-kit.git
 
 curl https://docs.reach.sh/reach -o reach ; chmod +x reach
 mv reach /usr/local/bin
